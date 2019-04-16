@@ -1,3 +1,4 @@
+import time
 import requests
 from bs4 import BeautifulSoup as bs
 
@@ -23,7 +24,8 @@ def hh_parse(base_url, headers):
     # то сервер 05:28 отдал нам данные
     # которые нам необходимо
     if request.status_code == 200:
-        soup = bs(request.content, 'html.parser')  # request контент это по
+        startTime = time.time()
+        soup = bs(request.content, 'lxml')  # request контент это по
         # сути весь ответ который нам
         # отправляет 06:33 сервер
         # 'html.parser' это встроенный парсер в python который позволяет
@@ -43,9 +45,12 @@ def hh_parse(base_url, headers):
                 'company': company,
                 'content': content,
             })
-            print(jobs)
+            # print(jobs)
 
-        print(len(divs))
+        finishTime = time.time()
+        result = finishTime - startTime
+        print('lxml = ' + str(result))
+        print(len(jobs))
     else:
         print("ERROR")
 
