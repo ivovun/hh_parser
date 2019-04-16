@@ -57,6 +57,7 @@ def main():
 
     base_url = 'https://hh.ru/search/vacancy?area=1&search_period=7&text=Python&page=1'
     hh_parse(base_url, headers)
+    #test2
 
 
 main()
